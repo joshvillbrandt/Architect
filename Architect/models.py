@@ -25,17 +25,17 @@ class Part(models.Model):
         return self.root_part.__unicode__() + ' ' + self.name
 
 ########################################################################################
-# release control
-########################################################################################
-
-########################################################################################
-# connectors
+# enclosures
 ########################################################################################
 class PartEnclosure(models.Model):
     part = models.ForeignKey(Part)
     shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
     def __unicode__(self):
         return 'Enclosure for ' + self.part.__unicode__()
+
+########################################################################################
+# connectors
+########################################################################################
 
 class ConnectorSeries(models.Model):
     name = models.CharField(max_length=255, unique=True) # like "MIL-DTL-D38999"

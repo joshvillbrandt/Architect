@@ -28,7 +28,7 @@ Next, clone the project and initialize the database. The database is automatical
 
 If you would like, you can preload some data.
 
-    todo
+    python manage.py loaddata SuperDracoController.json
 
 Finally, you can run the server.
 
