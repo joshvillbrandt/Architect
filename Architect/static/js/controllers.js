@@ -21,9 +21,11 @@ controllers.controller('NavbarCtrl', ['$scope', '$http', '$location', 'Session',
         };
     }]);
 
-controllers.controller('SidebarCtrl', ['$scope', '$http', '$location', 'Session',
-    function ($scope, $http, $location, Session) {
-        
+controllers.controller('SidebarCtrl', ['$scope', '$http', '$location', 'WindowManager',
+    function ($scope, $http, $location, WindowManager) {
+        $scope.windowCategories = WindowManager.windowCategories;
+        $scope.windows = WindowManager.windows;
+        $scope.addWindow = WindowManager.addWindow;
     }]);
 
 controllers.controller('TaskCtrl', ['$scope', '$log', '$modal', 'Task', 'Session',

@@ -85,8 +85,44 @@ a.navbar-brand img {
 /* Window manager
 -------------------------------------------------- */
 
-a.close-window {
+#sidebar ul {
+    margin-bottom: 20px;
+}
+
+.close-window {
     float: right;
+    color: #000;
+    display: none;
+}
+
+li:hover .close-window {
+    display: block;
+}
+
+.windows > li > a {
+    padding: 5px 15px;
+}
+
+.nav > li > a .window-part {
+    color: #999999;
+    display: block;
+}
+
+.nav-header {
+display: block;
+padding: 3px 15px;
+font-size: 11px;
+font-weight: bold;
+line-height: 20px;
+color: #999999;
+text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+text-transform: uppercase;
+}
+
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
+color: #ffffff;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+background-color: #0088cc;
 }
 
 /* Other goodies

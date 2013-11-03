@@ -29,3 +29,42 @@ services.factory('Task', ['$resource', '$log', '$http', 'taskURI',
                 }
             });
     }]);
+
+
+services.factory('WindowManager', ['$log',
+    function($log) {
+        var windowCategories = [
+            'app',
+            'part',
+            'channel',
+            'cable',
+            'connector'
+        ];
+
+        var windows = [{
+            part: '',
+            name: 'Open Component',
+            category: 'app',
+            active: true
+        },{
+            part: '12345678-501',
+            name: 'Super Draco Controller',
+            category: 'part',
+            active: false
+        }];
+
+        function addWindow() {
+            windows.push({
+                part: '',
+                name: 'test',
+                category: 'app',
+                active: false
+            });
+        }
+
+        return {
+            windowCategories: windowCategories,
+            windows: windows,
+            addWindow: addWindow,
+        };
+    }]);
