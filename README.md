@@ -38,9 +38,15 @@ Finally, you can run the server.
 
 This section describes the rational and intended usage for different parts of Architect.
 
-### Database Selection
+### Schema Mentality
+
+Throughout the design of Architect's schema, there existed a constant philosophical battle between using less tables with more properties or more tables with less properties. The big gain from using less tables is that history tracking becomes much more straightforward. If you stick everything related to one object in one big table, you can track history by creating 
 
 A conscience choice between using a document database or a relational database was made when implementing Architect. A document based database could have reduced the number of tables or collections by making use of embedded documents, however, document databases do not automatically create unique identifiers for embedded documents (at least not in MongoDB.) If this was the case, the schema could have been smaller and saving model history would have been easier. As a result, a relational database was ultimately chosen.
+
+ (TODO)
+
+less tables is easier to version control but it means duplication of data and more work to change all of the data types which is bad bad bad (TODO)
 
 ### Channel Schema
 
@@ -52,7 +58,7 @@ The connector schematic was designed to be very flexible and at the same time co
 
 * a lug with one or more ring terminals
 * gendered connectors (circular or otherwise) with different possible insert arrangements
-* genderless connectors which usually have exactly one insert arrangement
+* genderless connectors which have exactly one insert arrangement (in other words, two identical connectors can plug into each other)
 
 Terminal blocks like those made by Wago were also considered here. Since these can have complicated internal electrical connections, Wago blocks should be treated as parts instead of connectors.
 
@@ -64,5 +70,19 @@ Suggested channel mates are explicitly defined - there are no implied acceptable
 
 Suggested connector mates are implicitly defined based on rules. Specifically, all of the following conditions between two ConnectorTypes must be true in order to be compatible:
 
-* both ConnectorTypes are the same ConnectorSeries
+must not currently be exceeding the maximum number of simultaneous mates
+* both must have the same ConnectorSeries
+* both must have the same ConnectorShell
+same size but opposite P and R
+* both must have the same ConnectorKey or the ConnectorKey of one or both is universal
+same insert pattern but opposite insert gender
+
 * both ConnectorTypes have the same ConnectorShell if ConnectorShell.isGenderless is True, otherwise one must have isPlug True and the other must have isPlug false
+
+
+
+
+
+
+size
+shell

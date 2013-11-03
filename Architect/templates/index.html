@@ -1,1 +1,104 @@
-test
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.png">
+
+        <title>priority</title>
+        
+        <link href="{{ STATIC_URL }}lib/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/app.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="{{ STATIC_URL }}lib/bootstrap/html5shiv.js"></script>
+            <script src="{{ STATIC_URL }}lib/bootstrap/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="/static/img/favicon-gray.png" alt="A">rchitect</a>
+                    <div class="navbar-spinner" ng-show="hasPendingRequests()">
+                        <img src="/static/img/spinner.gif">
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse">
+
+                    {% verbatim %}
+                    <div ng-cloak ng-show="session.initialized">
+                        <div class="check-element" ng-hide="session.authenticated">
+                            <form class="navbar-form form-inline navbar-right" ng-class="{'has-error': session.loginerror == true}" ng-submit="login()">
+                                <input type="username" class="form-control" placeholder="username" ng-model="username">
+                                <input type="password" class="form-control" placeholder="password" ng-model="password">
+                                <button type="submit" class="btn btn-success">Sign in</button>
+                            </form>
+                        </div>
+                        <div class="check-element" ng-show="session.authenticated">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown"><span ng-bind-html="session.user.img"></span>{{session.user.first_name}} {{session.user.last_name}} <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-header">Email: {{session.user.email}}</li>
+                                        <li class="dropdown-header">Dept: {{session.user.division}}</li>
+                                        <li class="dropdown-header">Group: {{session.user.department}}</li>
+                                        <li class="dropdown-header">Title: {{session.user.title}}</li>
+                                        <li class="divider"></li>
+                                        <li><a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endverbatim %}
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+
+        <!-- START CONTENT -->
+        <div id="sidebar" ng-cloak ng-controller="SidebarCtrl">
+            <ul>
+                <li>New window <a href="#" class="close-window">x</a></li>
+                <li>closed <a href="#" class="close-window">x</a></li>
+            </ul>
+        </div>
+        <div id="content" ng-cloak ng-view>
+        </div>
+        <!-- END CONTENT -->
+
+        <div id="footer">
+            <div class="container text-muted">
+                Architect v<span app-version></span>
+            </div>
+        </div>
+
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ STATIC_URL }}lib/jquery/jquery-1.10.2.min.js"></script>
+        <script src="{{ STATIC_URL }}lib/bootstrap/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}lib/typeahead/typeahead.min.js"></script>
+        <script src="{{ STATIC_URL }}lib/angular/angular.min.js"></script>
+        <script src="{{ STATIC_URL }}lib/angular/angular-route.min.js"></script>
+        <script src="{{ STATIC_URL }}lib/angular/angular-resource.min.js"></script>
+        <script src="{{ STATIC_URL }}lib/angular/angular-typeahead.min.js"></script>
+        <script src="{{ STATIC_URL }}lib/angular/ui-bootstrap-0.6.0.js"></script>
+        <script src="{{ STATIC_URL }}lib/angular/ui-bootstrap-tpls-0.6.0.js"></script>
+        <script src="{{ STATIC_URL }}js/ldap.services.js"></script>
+        <script src="{{ STATIC_URL }}js/app.js"></script>
+        <script src="{{ STATIC_URL }}js/services.js"></script>
+        <script src="{{ STATIC_URL }}js/controllers.js"></script>
+        <script src="{{ STATIC_URL }}js/filters.js"></script>
+        <script src="{{ STATIC_URL }}js/directives.js"></script>
+    </body>
+</html>

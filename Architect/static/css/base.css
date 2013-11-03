@@ -1,0 +1,97 @@
+/* Layout styles
+-------------------------------------------------- */
+
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+#footer {
+    height: 50px;
+    background-color: #f5f5f5;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-top: solid 1px #e6e6e6;
+}
+
+#sidebar {
+    position: fixed;
+    top: 50px;
+    bottom: 50px;
+    left: 0;
+    width: 300px;
+    overflow: auto;
+    padding: 15px;
+    border-right: solid 1px #e6e6e6;
+}
+#content {
+    position: fixed;
+    top: 50px;
+    bottom: 50px;
+    right: 0;
+    left: 300px;
+    overflow: auto;
+    padding: 15px;
+}
+
+#footer > .container {
+    padding: 15px 15px;
+    text-align: center;
+}
+
+.container {
+    max-width: 100%;
+}
+
+/* Nav bar
+-------------------------------------------------- */
+
+.navbar-form {
+    padding-right: 0;
+    margin-right: -15px;
+}
+
+.navbar-form input {
+    width: 150px;
+}
+
+ul.navbar-nav button {
+    margin: 8px 0;
+}
+
+.navbar-spinner {
+    margin: 14px -40px 0 0;
+}
+
+a.user-menu img {
+    margin: -8px 10px -8px 0;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+}
+
+a.navbar-brand img {
+    height: 18px;
+    margin-top: -5px;
+    margin-right: -1px;
+}
+
+.open > a.user-menu img, a.user-menu:hover img {
+    border-color: #777;
+}
+
+/* Window manager
+-------------------------------------------------- */
+
+a.close-window {
+    float: right;
+}
+
+/* Other goodies
+-------------------------------------------------- */
+
+code {
+    font-size: 80%;
+}
