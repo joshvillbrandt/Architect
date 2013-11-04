@@ -67,7 +67,13 @@ ul.navbar-nav button {
 }
 
 .navbar-spinner {
-    margin: 14px -40px 0 0;
+    margin: 14px 0 0 10px;
+    float: left;
+}
+
+.navbar .btn-group {
+    float: left;
+    margin-top: 8px;
 }
 
 a.user-menu img {
@@ -90,40 +96,66 @@ a.navbar-brand img {
 -------------------------------------------------- */
 
 #sidebar ul {
-    margin-bottom: 20px;
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
 }
 
-.close-window {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 5px 15px;
-    color: #000;
-    display: none;
+#sidebar ul li {
+    position: relative;
 }
 
-li:hover .close-window {
+#sidebar ul li a {
+    position: relative;
     display: block;
-}
-
-.windows > li > a {
     padding: 5px 15px;
 }
 
-.nav > li > a .window-subtitle {
+#sidebar ul li:hover a,
+#sidebar ul li:focus a {
+    text-decoration: none;
+}
+
+#sidebar ul li:hover:not(.active) a,
+#sidebar ul li:focus:not(.active) a {
+    background-color: #eeeeee;
+}
+
+#sidebar ul li .close-window {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 2px 8px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#sidebar ul li .close-window:hover {
+    display: block;
+    background-color: #f00;
+    color: #fff;
+}
+
+#sidebar ul li.active .close-window {
+    color: #fff;
+}
+
+#sidebar ul li a .window-subtitle {
     color: #999;
     display: block;
 }
 
-.nav > li.active > a .window-subtitle {
+#sidebar ul li.active a .window-subtitle {
     color: #eee;
 }
 
-.windows span.glyphicon {
+#sidebar ul li span.glyphicon {
     margin-right: 10px;
 }
 
-.category-header {
+#sidebar ul li.category-header {
     display: block;
     padding: 3px 15px;
     font-size: 11px;
@@ -134,7 +166,7 @@ li:hover .close-window {
     text-transform: uppercase;
 }
 
-.windows > .active > a, .windows > .active > a:hover, .windows > .active > a:focus {
+#sidebar ul li.active a {
     color: #ffffff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
     background-color: #0088cc;

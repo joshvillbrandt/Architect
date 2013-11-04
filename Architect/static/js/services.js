@@ -36,8 +36,9 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
         var windowCategories = [
             '_app_', // special category
             'part',
-            'channel',
+            'backshell',
             'cable',
+            'channel',
             'connector'
         ];
 
