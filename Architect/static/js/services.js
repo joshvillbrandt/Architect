@@ -31,8 +31,8 @@ services.factory('Task', ['$resource', '$log', '$http', 'taskURI',
     }]);
 
 
-services.factory('WindowManager', ['$log', '$location',
-    function($log, $location) {
+services.factory('WindowManager', ['$rootScope', '$log', '$location',
+    function($rootScope, $log, $location) {
         var windowCategories = [
             '_app_', // special category
             'part',
@@ -71,15 +71,21 @@ services.factory('WindowManager', ['$log', '$location',
             windowMap['/usage-guide']
         ];
 
-        function addWindow() {
-            var push = !windowMap.hasOwnProperty('/connector/1');
-            windowMap['/connector/1'] = {
-                route: '/connector/1',
-                title: 'My Part',
-                subtitle: '00012345-501 Rev 1',
-                category: 'part'
-            };
-            if(push) windows.push(windowMap['/connector/1']);
+        // automatically add current window to list
+        $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
+            if(windowMap[$location.path()] == undefined)
+                addWindow({
+                    route: $location.path(),
+                    title: $location.path(),
+                    subtitle: '00000000-000 Rev 0',
+                    category: 'part'
+                });
+        });
+
+        function addWindow(window) {
+            var push = !windowMap.hasOwnProperty(window.route);
+            windowMap[window.route] = window;
+            if(push) windows.push(windowMap[window.route]);
         }
 
         function closeWindow(route) {

@@ -82,7 +82,7 @@
                 </li>
             </ul>
 
-            <button type="button" class="btn btn-default" ng-click="addWindow()">Add</button>
+            <button type="button" class="btn btn-default" ng-click="demoWindow()">Add</button>
         </div>
         <div id="content" ng-cloak ng-view>
         </div>
@@ -90,7 +90,7 @@
         <!-- END CONTENT -->
 
         <div id="footer">
-            <div class="container text-muted">
+            <div class="container text-muted" ng-cloak>
                 v<span app-version></span>
                 <a class="pull-right" href="https://github.com/joshvillbrandt/Architect" target="_blank">
                     <span class="glyphicon glyphicon-new-window"></span>Github

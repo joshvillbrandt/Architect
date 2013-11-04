@@ -25,12 +25,20 @@ controllers.controller('SidebarCtrl', ['$rootScope', '$scope', '$log', '$locatio
     function ($rootScope, $scope, $log, $location, WindowManager) {
         $scope.windowCategories = WindowManager.windowCategories;
         $scope.windows = WindowManager.windows;
-        $scope.addWindow = WindowManager.addWindow;
         $scope.closeWindow = WindowManager.closeWindow;
         $scope.currentRoute = $location.path();
         $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
             $scope.currentRoute = $location.path();
         });
+
+        $scope.demoWindow = function() {
+            WindowManager.addWindow({
+                route: '/connector/1',
+                title: 'My Part',
+                subtitle: '00012345-501 Rev 1',
+                category: 'part'
+            });
+        };
     }]);
 
 controllers.controller('StaticCtrl', ['$scope',
