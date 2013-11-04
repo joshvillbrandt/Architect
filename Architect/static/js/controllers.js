@@ -21,11 +21,20 @@ controllers.controller('NavbarCtrl', ['$scope', '$http', '$location', 'Session',
         };
     }]);
 
-controllers.controller('SidebarCtrl', ['$scope', '$http', '$location', 'WindowManager',
-    function ($scope, $http, $location, WindowManager) {
+controllers.controller('SidebarCtrl', ['$rootScope', '$scope', '$log', '$location', 'WindowManager',
+    function ($rootScope, $scope, $log, $location, WindowManager) {
         $scope.windowCategories = WindowManager.windowCategories;
         $scope.windows = WindowManager.windows;
         $scope.addWindow = WindowManager.addWindow;
+        $scope.closeWindow = WindowManager.closeWindow;
+        $scope.currentRoute = $location.path();
+        $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
+            $scope.currentRoute = $location.path();
+        });
+    }]);
+
+controllers.controller('StaticCtrl', ['$scope',
+    function ($scope) {
     }]);
 
 controllers.controller('TaskCtrl', ['$scope', '$log', '$modal', 'Task', 'Session',

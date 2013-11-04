@@ -90,7 +90,10 @@ a.navbar-brand img {
 }
 
 .close-window {
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px 15px;
     color: #000;
     display: none;
 }
@@ -103,26 +106,34 @@ li:hover .close-window {
     padding: 5px 15px;
 }
 
-.nav > li > a .window-part {
-    color: #999999;
+.nav > li > a .window-subtitle {
+    color: #999;
     display: block;
 }
 
-.nav-header {
-display: block;
-padding: 3px 15px;
-font-size: 11px;
-font-weight: bold;
-line-height: 20px;
-color: #999999;
-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-text-transform: uppercase;
+.nav > li.active > a .window-subtitle {
+    color: #eee;
 }
 
-.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
-color: #ffffff;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-background-color: #0088cc;
+.windows span.glyphicon {
+    margin-right: 10px;
+}
+
+.category-header {
+    display: block;
+    padding: 3px 15px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #999999;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+
+.windows > .active > a, .windows > .active > a:hover, .windows > .active > a:focus {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    background-color: #0088cc;
 }
 
 /* Other goodies

@@ -31,40 +31,68 @@ services.factory('Task', ['$resource', '$log', '$http', 'taskURI',
     }]);
 
 
-services.factory('WindowManager', ['$log',
-    function($log) {
+services.factory('WindowManager', ['$log', '$location',
+    function($log, $location) {
         var windowCategories = [
-            'app',
+            '_app_', // special category
             'part',
             'channel',
             'cable',
             'connector'
         ];
 
-        var windows = [{
-            part: '',
-            name: 'Open Component',
-            category: 'app',
-            active: true
-        },{
-            part: '12345678-501',
-            name: 'Super Draco Controller',
-            category: 'part',
-            active: false
-        }];
+        var windowMap = {
+            '/home': {
+                route: '/home',
+                icon: 'glyphicon glyphicon-home',
+                title: 'Home',
+                subtitle: '',
+                category: '_app_'
+            },
+            '/browse-library': {
+                route: '/browse-library',
+                icon: 'glyphicon glyphicon-search',
+                title: 'Browse Library',
+                subtitle: '',
+                category: '_app_'
+            },
+            '/usage-guide': {
+                route: '/usage-guide',
+                icon: 'glyphicon glyphicon-info-sign',
+                title: 'Usage Guide',
+                subtitle: '',
+                category: '_app_'
+            }
+        };
+
+        var windows = [
+            windowMap['/home'],
+            windowMap['/browse-library'],
+            windowMap['/usage-guide']
+        ];
 
         function addWindow() {
-            windows.push({
-                part: '',
-                name: 'test',
-                category: 'app',
-                active: false
-            });
+            var push = !windowMap.hasOwnProperty('/connector/1');
+            windowMap['/connector/1'] = {
+                route: '/connector/1',
+                title: 'My Part',
+                subtitle: '00012345-501 Rev 1',
+                category: 'part'
+            };
+            if(push) windows.push(windowMap['/connector/1']);
+        }
+
+        function closeWindow(route) {
+            windows.splice(windows.indexOf(windowMap[route]), 1);
+            delete windowMap[route];
+
+            if(route = $location.path()) $location.path('/');
         }
 
         return {
             windowCategories: windowCategories,
             windows: windows,
             addWindow: addWindow,
+            closeWindow: closeWindow,
         };
     }]);
