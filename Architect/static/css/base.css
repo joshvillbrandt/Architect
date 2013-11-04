@@ -46,6 +46,11 @@ body {
     margin-right: 5px;
 }
 
+#footer a.github {
+    position: absolute;
+    right: 15px;
+}
+
 .container {
     max-width: 100%;
 }
