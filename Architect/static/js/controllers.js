@@ -43,6 +43,12 @@ controllers.controller('ComponentCtrl', ['$scope',
         $scope.test = 1;
     }]);
 
+controllers.controller('PartCtrl', ['$scope', '$routeParams', '$log',
+    function ($scope, $routeParams, $log) {
+        $scope.root = $routeParams.root;
+        $scope.version = $routeParams.version;
+    }]);
+
 controllers.controller('TaskCtrl', ['$scope', '$log', '$modal', 'Task', 'Session',
     function($scope, $log, $modal, Task, Session) {
         // testing single Task

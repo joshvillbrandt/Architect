@@ -20,7 +20,7 @@ app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/browse-library', {templateUrl: '/static/partials/browse-library.html', controller: 'StaticCtrl'});
     $routeProvider.when('/component-editor', {templateUrl: '/static/partials/component-editor.html', controller: 'ComponentCtrl'});
     $routeProvider.when('/usage-guide', {templateUrl: '/static/partials/usage-guide.html', controller: 'StaticCtrl'});
-    $routeProvider.when('/part/:id', {templateUrl: '/static/partials/part.html', controller: 'TaskCtrl'});
+    $routeProvider.when('/part/:root/:version', {templateUrl: '/static/partials/part.html', controller: 'PartCtrl'});
     $routeProvider.otherwise({redirectTo: '/home'});
 }]);
 

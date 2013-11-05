@@ -83,7 +83,7 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
                 var parts = route.split('/');
                 addWindow({
                     route: route,
-                    title: (parts[1] == 'part' ? 'part ' + parts[2] + 'title here' : route),
+                    title: (parts[1] == 'part' ? 'part ' + parts[2] + ' title here' : route),
                     subtitle: (parts[1] == 'part' ? '00000000-000 Rev 0' : ''),
                     category: parts[1]
                 });

@@ -4,26 +4,14 @@ from django.contrib.auth.models import User
 ########################################################################################
 # parts
 ########################################################################################
-class RootPart(models.Model):
-    name = models.CharField(max_length=255, unique=True) # like "0012345-501"
-    description = models.CharField(max_length=255) # like "My Component"
-    summary = models.TextField(blank=True)
-    def __unicode__(self):
-        return self.name + ' (' + self.description + ')'
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            super(Part, self).save(*args, **kwargs)
-            self.Part_set.create(name='1')
-            
-        else:
-            super(Part, self).save(*args, **kwargs)
-
 class Part(models.Model):
-    root_part = models.ForeignKey(RootPart)
-    name = models.CharField(max_length=255) # like "A" for a My Component rev A
+    root = models.CharField(max_length=255) # like "0012345-501"
+    version = models.CharField(max_length=255) # like "A" for a My Component rev A
+    description = models.CharField(max_length=255) # like "My Component"
     shape_json = models.TextField(blank=True) # enclosure shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
+    depreciated = models.BooleanField()
     def __unicode__(self):
-        return self.root_part.__unicode__() + ' ' + self.name
+        return self.root + ' ' + self.version
 
 ########################################################################################
 # connectors
@@ -32,96 +20,77 @@ class Part(models.Model):
 class ConnectorSeries(models.Model):
     name = models.CharField(max_length=255, unique=True) # like "MIL-DTL-D38999"
     summary = models.TextField(blank=True)
+    depreciated = models.BooleanField()
     def __unicode__(self):
         return self.name
 
 class ConnectorSize(models.Model):
     connector_series = models.ForeignKey(ConnectorSeries)
     name = models.CharField(max_length=255) # like "A/9" for an A shell
-
+    depreciated = models.BooleanField()
     def __unicode__(self):
         return self.connector_series.__unicode__() + ' > ' + self.name
 
-class ConnectorType(models.Model):
-    connector_series = models.ForeignKey(ConnectorSeries)
+class ConnectorShell(models.Model):
+    connector_size = models.ForeignKey(ConnectorSize)
     name = models.CharField(max_length=255) # like "Plug" or "Receptacle, Board Mount", or "Receptacle, Jam Nut" 
-    mount = none, wall mount, jam nut, board mount
-    gender plug, Receptacle, genderless
-    isGenderless
-    isPlug
-    harnessable
-    max_connections = models.IntegerField() # usually 1, 0 for infinite connectors, >1 for a specific maximum (this is for ring terminals and lugs)
+    is_plug = models.NullBooleanField() # true if this is a plug, null if this shell can be mated to itself
+    is_harnessable = models.BooleanField() # true if we should suggest this for harnesses
+    max_connections = models.IntegerField() # usually 1, 0 for infinite connectors, >1 for a specific maximum if not a plug (this is for ring terminals and lugs)
     shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
+    depreciated = models.BooleanField()
     def __unicode__(self):
-        return self.connector_series.__unicode__() + ' > ' + self.name
+        return self.connector_size.__unicode__() + ' > ' + self.name
 
 class ConnectorKey(models.Model):
-    connector_series = models.ForeignKey(ConnectorSeries)
-    name = models.CharField(max_length=255) # like "11/13/15 N" for normal keying for B, C, and D size connectors
-    isUniversal = models.BooleanField() # true if this key type can mate with all key types
-    shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
-    plug shape_json
-    Receptacle shape_json
+    connector_size = models.ForeignKey(ConnectorSize)
+    name = models.CharField(max_length=255) # like "N" for normal keying
+    is_universal = models.BooleanField() # true if this key type can mate with all key types
+    plug_shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
+    receptacle_shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
+    depreciated = models.BooleanField()
     def __unicode__(self):
-        return self.connector_series.__unicode__() + ' > ' + self.name
+        return self.connector_size.__unicode__() + ' > ' + self.name
 
 class ConnectorInsert(models.Model):
-    connector_series = models.ForeignKey(ConnectorSeries)
-    name = models.CharField(max_length=255) # like "9-35 Pins" for an A shell 35 insert
+    connector_size = models.ForeignKey(ConnectorSize)
+    name = models.CharField(max_length=255) # like "35" for an 35 insert for a specific shell size
+    primary_name = models.CharField(max_length=255) # like "Pins"
+    flipped_name = models.CharField(max_length=255) # like "Sockets"
+    genderless = models.BooleanField() # true if this insert type mates to itself
     shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
+    depreciated = models.BooleanField()
     def __unicode__(self):
-        return self.connector_series.__unicode__() + ' > ' + self.name
+        return self.connector_size.__unicode__() + ' > ' + self.name
 
 class ConnectorContactType(models.Model):
     connector_series = models.ForeignKey(ConnectorSeries)
     name = models.CharField(max_length=255) # like "22D Pin"
     shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
+    depreciated = models.BooleanField()
     def __unicode__(self):
         return self.connector_series.__unicode__() + ' > ' + self.name
 
 class ConnectorContactInstance(models.Model):
     connector_type = models.ForeignKey(ConnectorInsert)
-    normal_connector_contact_type = models.ForeignKey(ConnectorContactType)
-    flipped_connector_contact_type = models.ForeignKey(ConnectorContactType)
+    primary_connector_contact_type = models.ForeignKey(ConnectorContactType, related_name='+')
+    flipped_connector_contact_type = models.ForeignKey(ConnectorContactType, related_name='+')
     name = models.CharField(max_length=255) # like "1"
     order = models.IntegerField() # this enable easy sorting from the database for contacts named like a...zA...Zaa...zzAA...ZZ
-    normal_position_json = models.TextField(blank=True) # x,y position from center of connector in inches "{"x":-0.012,"y":0.045}" (front face of pin insert)
-    normal_position_json = models.TextField(blank=True) # x,y position from center of connector in inches "{"x":-0.012,"y":0.045}" (front face of socket insert)
+    primary_position_json = models.TextField(blank=True) # x,y position from center of connector in inches "{"x":-0.012,"y":0.045}" (front face of pin insert)
+    flipped_position_json = models.TextField(blank=True) # x,y position from center of connector in inches "{"x":-0.012,"y":0.045}" (front face of socket insert)
     def __unicode__(self):
         return self.connector_insert.__unicode__() + ' > ' + self.name
 
 class ConnectorType(models.Model):
-    # series
-    # mounting # like "Wall Mount" or "Board Mount" or "Jam Nut" or "Plug"
-    # material # like "Aluminum shell, electroless nickle finish"
-    # shell_type # like "Plug" or "Receptacle"
-    # shell_size # like "9/A" or "11/B"
-    # insert arrangement
-    # list of pins for each contact in arrangement
-    # key
-
-    need a table for any field which we don't know all of the values up front, unless it is a number
-
-
-    series              table
-    max_connections     field
-    shell gender        field (plug, Receptacle, genderless)
-    shell_size          table (connector series based)
-    material            table (no connector series)
-    
-
-
-
-
-
-
-    gender = Plug, Receptacle, Genderless
     connector_series = models.ForeignKey(ConnectorSeries)
+    connector_size = models.ForeignKey(ConnectorSize, blank=True, null=True)
     connector_shell = models.ForeignKey(ConnectorShell, blank=True, null=True)
     connector_key = models.ForeignKey(ConnectorKey, blank=True, null=True)
     connector_insert = models.ForeignKey(ConnectorInsert, blank=True, null=True)
-    flipped_insert # the D38999 convention is that ""
-    name = models.CharField(max_length=255) # like "D38999/24FE35PN"
+    connector_insert_primary = models.NullBooleanField() # true if primary or null insert is genderless
+    name = models.CharField(max_length=255) # like "D38999/24FE35PN" (because some D38999 compatible connectors don't have D38999 in front)
+    depreciated = models.BooleanField()
     def __unicode__(self):
         return self.connector_series.__unicode__() + ' > ' + self.name
 
@@ -140,6 +109,7 @@ class ConnectorInstance(models.Model):
 class ChannelType(models.Model):
     name = models.CharField(max_length=255, unique=True) # like "RS422, Asynchronous"
     summary = models.TextField(blank=True)
+    depreciated = models.BooleanField()
     def __unicode__(self):
         return self.name
 
@@ -171,8 +141,8 @@ class ChannelSignalInstance(models.Model):
 # part internal relationships
 ########################################################################################
 #class PartInstance(models.Model):
-#    parent_part = models.ForeignKey(Part, related_name='parents')
-#    part_type = models.ForeignKey(Part)
+#    parent_part = models.ForeignKey(Part)
+#    part_type = models.ForeignKey(Part, related_name='+')
 #    name = models.CharField(max_length=255, unique=True) # like "mycomponent1"
 #    note = models.TextField(blank=True)
 #    def __unicode__(self):

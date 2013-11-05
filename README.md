@@ -28,7 +28,7 @@ Next, clone the project and initialize the database. The database is automatical
 
 If you would like, you can preload some data.
 
-    python manage.py loaddata SuperDracoController.json
+    python manage.py loaddata MyPart.json (TODO)
 
 Finally, you can run the server.
 
@@ -79,4 +79,12 @@ Suggested connector mates are implicitly defined based on rules. Specifically, a
 * must have the same ConnectorSize
 * must have the opposite ConnectorShell or the same ConnectorShellType if it is genderless
 * must have the same ConnectorKey or all or all but one of the ConnectorKeys is universal
-* must have the same insert pattern but opposite insert gender
+* must have the same ConnectorInsert with one connector having the "primary" pattern and the other having the "flipped" pattern unless the ConnectorInsert is "genderless" in which case is doesn't matter
+
+### Depreciation
+
+Many model types (most non-instance types) have a depreciated field. The intent here is that the UI sorts these items to the bottom of selection lists in an effort to discourage their use. The user should record the reason for depreciation in the change comment on submission.
+
+## Todo
+* schema for internal channels
+* schema for harnesses
