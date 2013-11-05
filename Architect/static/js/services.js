@@ -74,13 +74,18 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
 
         // automatically add current window to list
         $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
-            if(windowMap[$location.path()] == undefined)
-                addWindow({
-                    route: $location.path(),
-                    title: $location.path(),
-                    subtitle: '00000000-000 Rev 0',
-                    category: 'part'
-                });
+            var route = $location.path();
+            $log.log(route)
+            if(windowMap[$location.path()] == undefined) {
+                var parts = route.split('/');
+                var windowConfig = {
+                        route: route,
+                        title: (parts[1] == 'part' ? 'part ' + parts[2] + 'title here' : route),
+                        subtitle: (parts[1] == 'part' ? '00000000-000 Rev 0' : ''),
+                        category: parts[1]
+                    }
+                addWindow(windowConfig);
+            }
         });
 
         function addWindow(window) {
@@ -91,7 +96,8 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
 
         function closeWindow(route) {
             windows.splice(windows.indexOf(windowMap[route]), 1);
-            delete windowMap[route];
+            if(windowMap[route] != undefined) delete windowMap[route];
+            if(scopeMap[route] != undefined) delete scopeMap[route];
 
             if(route = $location.path()) $location.path('/');
         }

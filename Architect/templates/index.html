@@ -91,11 +91,9 @@
                         <span class="window-title">{{window.title}}</span>
                         <span class="window-subtitle">{{window.subtitle}}</span>
                     </a>
-                    <span class="close-window" ng-click="closeWindow(window.route)" ng-hide="category == '_app_'">x</span>
+                    <span class="close-window glyphicon glyphicon-remove-circle" ng-click="closeWindow(window.route)" ng-hide="category == '_app_'"></span>
                 </li>
             </ul>
-
-            <button type="button" class="btn btn-default" ng-click="demoWindow()">Add</button>
         </div>
         <div id="content" ng-cloak ng-view>
         </div>

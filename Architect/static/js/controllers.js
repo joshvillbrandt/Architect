@@ -27,22 +27,20 @@ controllers.controller('SidebarCtrl', ['$rootScope', '$scope', '$log', '$locatio
         $scope.windows = WindowManager.windows;
         $scope.closeWindow = WindowManager.closeWindow;
         $scope.currentRoute = $location.path();
+
+        // to suppot highlighting the active window
         $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
             $scope.currentRoute = $location.path();
         });
-
-        $scope.demoWindow = function() {
-            WindowManager.addWindow({
-                route: '/connector/1',
-                title: 'My Part',
-                subtitle: '00012345-501 Rev 1',
-                category: 'part'
-            });
-        };
     }]);
 
 controllers.controller('StaticCtrl', ['$scope',
     function ($scope) {
+    }]);
+
+controllers.controller('ConnectorCtrl', ['$scope',
+    function ($scope) {
+        $scope.test = 1;
     }]);
 
 controllers.controller('TaskCtrl', ['$scope', '$log', '$modal', 'Task', 'Session',

@@ -89,7 +89,7 @@ a.user-menu img {
 
 a.navbar-brand img {
     height: 18px;
-    margin-top: -5px;
+    margin-top: -6px;
     margin-right: -1px;
 }
 
@@ -129,21 +129,19 @@ a.navbar-brand img {
 #sidebar ul li .close-window {
     position: absolute;
     right: 10px;
-    top: 10px;
-    padding: 2px 8px;
-    color: #000;
+    top: 12%;
+    padding: 4px 8px;
+    color: #ccc;
     font-weight: bold;
     border-radius: 20px;
     cursor: pointer;
 }
 
 #sidebar ul li .close-window:hover {
-    display: block;
-    background-color: #f00;
-    color: #fff;
+    color: #333;
 }
 
-#sidebar ul li.active .close-window {
+#sidebar ul li.active .close-window:hover {
     color: #fff;
 }
 
@@ -156,7 +154,7 @@ a.navbar-brand img {
     color: #eee;
 }
 
-#sidebar ul li span.glyphicon {
+#sidebar ul li span.glyphicon:not(.close-window) {
     margin-right: 10px;
 }
 
