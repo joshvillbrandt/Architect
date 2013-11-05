@@ -79,16 +79,14 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
         // automatically add current window to list
         $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
             var route = $location.path();
-            $log.log(route)
             if(windowMap[$location.path()] == undefined) {
                 var parts = route.split('/');
-                var windowConfig = {
-                        route: route,
-                        title: (parts[1] == 'part' ? 'part ' + parts[2] + 'title here' : route),
-                        subtitle: (parts[1] == 'part' ? '00000000-000 Rev 0' : ''),
-                        category: parts[1]
-                    }
-                addWindow(windowConfig);
+                addWindow({
+                    route: route,
+                    title: (parts[1] == 'part' ? 'part ' + parts[2] + 'title here' : route),
+                    subtitle: (parts[1] == 'part' ? '00000000-000 Rev 0' : ''),
+                    category: parts[1]
+                });
             }
         });
 
@@ -101,8 +99,8 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
         function closeWindow(route) {
             windows.splice(windows.indexOf(windowMap[route]), 1);
             if(windowMap[route] != undefined) delete windowMap[route];
-            if(scopeMap[route] != undefined) delete scopeMap[route];
 
+            // send user to homepage if they just closed the window that was open
             if(route = $location.path()) $location.path('/');
         }
 

@@ -27,14 +27,18 @@ body {
     padding: 15px;
     border-right: solid 1px #e6e6e6;
 }
+
 #content {
     position: fixed;
     top: 50px;
     bottom: 50px;
     right: 0;
     left: 300px;
-    overflow: auto;
+}
+
+.content-box {
     padding: 15px;
+    overflow: auto;
 }
 
 #footer > .container {
@@ -53,6 +57,41 @@ body {
 
 .container {
     max-width: 100%;
+}
+
+/* Content layouts
+-------------------------------------------------- */
+
+#content .left-column {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 50%;
+    left: 0;
+    border-right: solid 1px #e6e6e6;
+}
+
+#content .right-column {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+}
+
+#content .top-row {
+    position: absolute;
+    top: 0;
+    bottom: 50%;
+    width: 100%;
+    border-bottom: solid 1px #e6e6e6;
+}
+
+#content .bottom-row {
+    position: absolute;
+    bottom: 0;
+    top: 50%;
+    width: 100%;
 }
 
 /* Nav bar
