@@ -36,10 +36,6 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
         var windowCategories = [
             '_app_', // special category
             'part',
-            'backshell',
-            'cable',
-            'channel',
-            'connector'
         ];
 
         var windowMap = {
@@ -57,6 +53,13 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
                 subtitle: '',
                 category: '_app_'
             },
+            '/component-editor': {
+                route: '/component-editor',
+                icon: 'glyphicon glyphicon-pencil',
+                title: 'Component Editor',
+                subtitle: '',
+                category: '_app_'
+            },
             '/usage-guide': {
                 route: '/usage-guide',
                 icon: 'glyphicon glyphicon-info-sign',
@@ -69,6 +72,7 @@ services.factory('WindowManager', ['$rootScope', '$log', '$location',
         var windows = [
             windowMap['/home'],
             windowMap['/browse-library'],
+            windowMap['/component-editor'],
             windowMap['/usage-guide']
         ];
 

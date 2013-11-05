@@ -38,7 +38,7 @@ controllers.controller('StaticCtrl', ['$scope',
     function ($scope) {
     }]);
 
-controllers.controller('ConnectorCtrl', ['$scope',
+controllers.controller('ComponentCtrl', ['$scope',
     function ($scope) {
         $scope.test = 1;
     }]);

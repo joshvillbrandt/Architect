@@ -83,7 +83,7 @@
         <!-- START CONTENT -->
         {% verbatim %}
         <div id="sidebar" ng-cloak ng-controller="SidebarCtrl">
-            <ul class="windows" ng-repeat="category in windowCategories" ng-show="(windows | filter:{category: category}).length">
+            <ul class="windows" ng-repeat="category in windowCategories">
                 <li class="category-header" ng-hide="category == '_app_'">{{category}}s</li>
                 <li ng-repeat="window in windows | filter:{category: category}" ng-class="{active: window.route==currentRoute}">
                     <a href="#{{window.route}}">
@@ -93,6 +93,7 @@
                     </a>
                     <span class="close-window glyphicon glyphicon-remove-circle" ng-click="closeWindow(window.route)" ng-hide="category == '_app_'"></span>
                 </li>
+                <li class="empty" ng-hide="(windows | filter:{category: category}).length">no open parts</li>
             </ul>
         </div>
         <div id="content" ng-cloak ng-view>

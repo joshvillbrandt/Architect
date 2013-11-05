@@ -34,6 +34,10 @@ Finally, you can run the server.
 
     python manage.py runserver 0.0.0.0:8001
 
+## Screenshot
+
+![Architect Screenshot](screenshot.png)
+
 ## Implementation Guide
 
 This section describes the rational and intended usage for different parts of Architect.
@@ -70,19 +74,9 @@ Suggested channel mates are explicitly defined - there are no implied acceptable
 
 Suggested connector mates are implicitly defined based on rules. Specifically, all of the following conditions between two ConnectorTypes must be true in order to be compatible:
 
-must not currently be exceeding the maximum number of simultaneous mates
-* both must have the same ConnectorSeries
-* both must have the same ConnectorShell
-same size but opposite P and R
-* both must have the same ConnectorKey or the ConnectorKey of one or both is universal
-same insert pattern but opposite insert gender
-
-* both ConnectorTypes have the same ConnectorShell if ConnectorShell.isGenderless is True, otherwise one must have isPlug True and the other must have isPlug false
-
-
-
-
-
-
-size
-shell
+* must not currently be exceeding the maximum number of simultaneous connections (ConnectorType.max_connections) of any connector
+* must have the same ConnectorSeries
+* must have the same ConnectorSize
+* must have the opposite ConnectorShell or the same ConnectorShellType if it is genderless
+* must have the same ConnectorKey or all or all but one of the ConnectorKeys is universal
+* must have the same insert pattern but opposite insert gender

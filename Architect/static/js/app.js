@@ -18,9 +18,8 @@ app.value('taskURI', '//jvillbrandt-ubuntu:8007');
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/home', {templateUrl: '/static/partials/home.html', controller: 'StaticCtrl'});
     $routeProvider.when('/browse-library', {templateUrl: '/static/partials/browse-library.html', controller: 'StaticCtrl'});
+    $routeProvider.when('/component-editor', {templateUrl: '/static/partials/component-editor.html', controller: 'ComponentCtrl'});
     $routeProvider.when('/usage-guide', {templateUrl: '/static/partials/usage-guide.html', controller: 'StaticCtrl'});
-    $routeProvider.when('/channel/:id', {templateUrl: '/static/partials/channel.html', controller: 'StaticCtrl'});
-    $routeProvider.when('/connector/:id', {templateUrl: '/static/partials/connector.html', controller: 'ConnectorCtrl'});
     $routeProvider.when('/part/:id', {templateUrl: '/static/partials/part.html', controller: 'TaskCtrl'});
     $routeProvider.otherwise({redirectTo: '/home'});
 }]);

@@ -113,7 +113,7 @@ a.navbar-brand img {
 #sidebar ul li a {
     position: relative;
     display: block;
-    padding: 5px 15px;
+    padding: 5px 35px 5px 15px;
 }
 
 #sidebar ul li:hover a,
@@ -130,11 +130,13 @@ a.navbar-brand img {
     position: absolute;
     right: 10px;
     top: 12%;
-    padding: 4px 8px;
+    padding: 5px 10px;
     color: #ccc;
     font-weight: bold;
     border-radius: 20px;
     cursor: pointer;
+    margin-right: -10px;
+    margin-top: -2px;
 }
 
 #sidebar ul li .close-window:hover {
@@ -167,6 +169,14 @@ a.navbar-brand img {
     color: #999999;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
+}
+
+#sidebar ul li.empty {
+    display: block;
+    padding: 3px 15px;
+    font-size: 10px;
+    font-style: italic;
+    color: #999999;
 }
 
 #sidebar ul li.active a {
