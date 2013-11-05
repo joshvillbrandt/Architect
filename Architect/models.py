@@ -21,17 +21,9 @@ class RootPart(models.Model):
 class Part(models.Model):
     root_part = models.ForeignKey(RootPart)
     name = models.CharField(max_length=255) # like "A" for a My Component rev A
+    shape_json = models.TextField(blank=True) # enclosure shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
     def __unicode__(self):
         return self.root_part.__unicode__() + ' ' + self.name
-
-########################################################################################
-# enclosures
-########################################################################################
-class PartEnclosure(models.Model):
-    part = models.ForeignKey(Part)
-    shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
-    def __unicode__(self):
-        return 'Enclosure for ' + self.part.__unicode__()
 
 ########################################################################################
 # connectors
@@ -43,17 +35,33 @@ class ConnectorSeries(models.Model):
     def __unicode__(self):
         return self.name
 
-class ConnectorShell(models.Model):
+class ConnectorSize(models.Model):
     connector_series = models.ForeignKey(ConnectorSeries)
-    name = models.CharField(max_length=255) # like "9 Plug" for an A shell plug 
+    name = models.CharField(max_length=255) # like "A/9" for an A shell
+
+    def __unicode__(self):
+        return self.connector_series.__unicode__() + ' > ' + self.name
+
+class ConnectorType(models.Model):
+    connector_series = models.ForeignKey(ConnectorSeries)
+    name = models.CharField(max_length=255) # like "Plug" or "Receptacle, Board Mount", or "Receptacle, Jam Nut" 
+    mount = none, wall mount, jam nut, board mount
+    gender plug, Receptacle, genderless
+    isGenderless
+    isPlug
+    harnessable
+    max_connections = models.IntegerField() # usually 1, 0 for infinite connectors, >1 for a specific maximum (this is for ring terminals and lugs)
     shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
     def __unicode__(self):
         return self.connector_series.__unicode__() + ' > ' + self.name
 
 class ConnectorKey(models.Model):
     connector_series = models.ForeignKey(ConnectorSeries)
-    name = models.CharField(max_length=255) # like "11/13/15 N Plug" for normal keying for B, C, and D size plugs
+    name = models.CharField(max_length=255) # like "11/13/15 N" for normal keying for B, C, and D size connectors
+    isUniversal = models.BooleanField() # true if this key type can mate with all key types
     shape_json = models.TextField(blank=True) # shape and related attributes in inches "{"type":"circle","attr":{"r": 1.0}}"
+    plug shape_json
+    Receptacle shape_json
     def __unicode__(self):
         return self.connector_series.__unicode__() + ' > ' + self.name
 
@@ -72,19 +80,47 @@ class ConnectorContactType(models.Model):
         return self.connector_series.__unicode__() + ' > ' + self.name
 
 class ConnectorContactInstance(models.Model):
-    connector_insert = models.ForeignKey(ConnectorInsert)
-    connector_contact_type = models.ForeignKey(ConnectorContactType)
+    connector_type = models.ForeignKey(ConnectorInsert)
+    normal_connector_contact_type = models.ForeignKey(ConnectorContactType)
+    flipped_connector_contact_type = models.ForeignKey(ConnectorContactType)
     name = models.CharField(max_length=255) # like "1"
-    order = models.IntegerField() # description is always "1"
-    position_json = models.TextField(blank=True) # x,y position from center of connector in inches "{"x":-0.012,"y":0.045}"
+    order = models.IntegerField() # this enable easy sorting from the database for contacts named like a...zA...Zaa...zzAA...ZZ
+    normal_position_json = models.TextField(blank=True) # x,y position from center of connector in inches "{"x":-0.012,"y":0.045}" (front face of pin insert)
+    normal_position_json = models.TextField(blank=True) # x,y position from center of connector in inches "{"x":-0.012,"y":0.045}" (front face of socket insert)
     def __unicode__(self):
         return self.connector_insert.__unicode__() + ' > ' + self.name
 
 class ConnectorType(models.Model):
+    # series
+    # mounting # like "Wall Mount" or "Board Mount" or "Jam Nut" or "Plug"
+    # material # like "Aluminum shell, electroless nickle finish"
+    # shell_type # like "Plug" or "Receptacle"
+    # shell_size # like "9/A" or "11/B"
+    # insert arrangement
+    # list of pins for each contact in arrangement
+    # key
+
+    need a table for any field which we don't know all of the values up front, unless it is a number
+
+
+    series              table
+    max_connections     field
+    shell gender        field (plug, Receptacle, genderless)
+    shell_size          table (connector series based)
+    material            table (no connector series)
+    
+
+
+
+
+
+
+    gender = Plug, Receptacle, Genderless
     connector_series = models.ForeignKey(ConnectorSeries)
     connector_shell = models.ForeignKey(ConnectorShell, blank=True, null=True)
     connector_key = models.ForeignKey(ConnectorKey, blank=True, null=True)
     connector_insert = models.ForeignKey(ConnectorInsert, blank=True, null=True)
+    flipped_insert # the D38999 convention is that ""
     name = models.CharField(max_length=255) # like "D38999/24FE35PN"
     def __unicode__(self):
         return self.connector_series.__unicode__() + ' > ' + self.name
@@ -137,7 +173,7 @@ class ChannelSignalInstance(models.Model):
 #class PartInstance(models.Model):
 #    parent_part = models.ForeignKey(Part, related_name='parents')
 #    part_type = models.ForeignKey(Part)
-#    name = models.CharField(max_length=255, unique=True) # like "prop1"
+#    name = models.CharField(max_length=255, unique=True) # like "mycomponent1"
 #    note = models.TextField(blank=True)
 #    def __unicode__(self):
 #        return self.name
