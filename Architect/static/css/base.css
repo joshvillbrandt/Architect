@@ -129,7 +129,7 @@ a.navbar-brand img {
 #sidebar ul li .close-window {
     position: absolute;
     right: 10px;
-    top: 12%;
+    top: 14px;
     padding: 5px 10px;
     color: #ccc;
     font-weight: bold;
@@ -139,8 +139,16 @@ a.navbar-brand img {
     margin-top: -2px;
 }
 
+#sidebar ul li:hover .close-window {
+    color: #bbb;
+}
+
 #sidebar ul li .close-window:hover {
     color: #333;
+}
+
+#sidebar ul li.active .close-window {
+    color: #0af;
 }
 
 #sidebar ul li.active .close-window:hover {
