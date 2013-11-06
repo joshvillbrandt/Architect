@@ -3,11 +3,18 @@ Architect
 
 Architect is a web-based avionics system design tool.
 
+* [Overview](#overview)
+* [Setup](#setup)
+* [Implementation Guide](#implementation-guide)
+* [Todo List](#todo-list)
+
 ## Overview
 
 This tool was designed out of the need for a simple yet powerful design tool for large electronic systems.
 
 Architect is built around the idea of a part. Parts have channels (which inherit properties from channel types) and each channel has one or more signals. Connectors are the external interfaces for channels. Individual contacts on a connector are assigned to one (or more...) channel signal. Completing this information for one part produces a complete definition of all of the possible input and outputs of a part. This information is what is classically stored in an Interface Control Document or ICD.
+
+![Architect Screenshot](screenshot.png)
 
 ## Setup
 
@@ -33,10 +40,6 @@ If you would like, you can preload some data.
 Finally, you can run the server.
 
     python manage.py runserver 0.0.0.0:8001
-
-## Screenshot
-
-![Architect Screenshot](screenshot.png)
 
 ## Implementation Guide
 
@@ -85,7 +88,7 @@ Suggested connector mates are implicitly defined based on rules. Specifically, a
 
 Many model types (most non-instance types) have a depreciated field. The intent here is that the UI sorts these items to the bottom of selection lists in an effort to discourage their use. The user should record the reason for depreciation in the change comment on submission.
 
-## Todo
+## Todo List
 * schema for internal channels
 * schema for harnesses
 * schema for passthroughs
