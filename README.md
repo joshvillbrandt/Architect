@@ -88,3 +88,7 @@ Many model types (most non-instance types) have a depreciated field. The intent 
 ## Todo
 * schema for internal channels
 * schema for harnesses
+* schema for passthroughs
+* tasty pie
+* breeze.js
+* exposing child channels externally

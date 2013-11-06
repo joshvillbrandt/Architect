@@ -13,7 +13,7 @@ var app = angular.module('app', [
 ]);
 
 app.value('ldapURI', '//jvillbrandt-ubuntu:8008');
-app.value('taskURI', '//jvillbrandt-ubuntu:8007');
+app.value('architectURI', '//jvillbrandt-ubuntu:8005');
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/home', {templateUrl: '/static/partials/home.html', controller: 'StaticCtrl'});

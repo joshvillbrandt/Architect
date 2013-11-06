@@ -45,6 +45,7 @@ controllers.controller('ComponentCtrl', ['$scope',
 
 controllers.controller('PartCtrl', ['$scope', '$routeParams', '$log',
     function ($scope, $routeParams, $log) {
+        $scope.channelMode = true;
         $scope.root = $routeParams.root;
         $scope.version = $routeParams.version;
     }]);

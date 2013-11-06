@@ -238,3 +238,26 @@ a.navbar-brand img {
 code {
     font-size: 80%;
 }
+
+.content-tabs {
+    padding-top: 15px;
+}
+
+.content-tabs .nav-tabs {
+    padding: 0 15px;
+}
+
+.content-tabs .nav-tabs li {
+    cursor: pointer;
+}
+
+.content-tabs .tab-content {
+    position: absolute;
+    top: 57px; /* this doesn't work with portrait ipad */
+    bottom: 0;
+    width: 100%;
+}
+
+.content-tab-btn {
+    margin: 15px 15px 0 0;
+}

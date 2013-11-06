@@ -1,109 +1,152 @@
-<div class="left-column">
-    <div class="top-row content-box">top</div>
-    <div class="bottom-row content-box">
-        <form role="form">
-            <div class="form-group">
-                <label for="root">Root</label>
-                <input type="text" class="form-control" id="root" placeholder="Enter part root" ng-model="root">
-            </div>
-            <div class="form-group">
-                <label for="version">Version</label>
-                <input type="text" class="form-control" id="version" placeholder="Enter part version" ng-model="version">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" placeholder="Enter part description">
-            </div>
-            <div class="form-group">
-                <label for="description">Enclosure JSON</label>
-                <textarea class="form-control" id="shape_json" rows="3" placeholder="Enter enclosure JSON"></textarea>
-            </div>
-            <div class="checkbox">
-                <label>
-                <input type="checkbox"> Depreciated
-                </label>
-            </div>
-            <button type="submit" class="btn btn-default">Save</button>
-        </form>
-    </div>
+<div class="btn-group pull-right content-tab-btn">
+    <button type="button" class="btn btn-primary active" ng-model="channelMode" btn-radio="true">Channels</button>
+    <button type="button" class="btn btn-primary" ng-model="channelMode" btn-radio="false">Connectors</button>
 </div>
-<div class="right-column content-box">
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
-    col 2<br>
 
-</div>
+<tabset class="content-tabs">
+    <tab heading="External">
+        <div class="left-column">
+            <div class="top-row content-box">
+                external visualization
+
+                <button type="submit" class="btn btn-xs btn-default pull-right">reset zoom</button>
+            </div>
+            <div class="bottom-row content-box">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="root">Root</label>
+                        <input type="text" class="form-control" id="root" placeholder="Enter part root" ng-model="root">
+                    </div>
+                    <div class="form-group">
+                        <label for="version">Version</label>
+                        <input type="text" class="form-control" id="version" placeholder="Enter part version" ng-model="version">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Enter part description">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Enclosure JSON</label>
+                        <textarea class="form-control" id="shape_json" rows="3" placeholder="Enter enclosure JSON"></textarea>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                        <input type="checkbox"> Depreciated
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="right-column content-box" ng-show="channelMode">
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+            channels<br>
+        </div>
+        <div class="right-column content-box" ng-hide="channelMode">
+            connectors
+        </div>
+    </tab> <!-- end external -->
+    <tab heading="Internal">
+        <div class="left-column">
+            <div class="top-row content-box">
+                internal visualization
+
+                <button type="submit" class="btn btn-xs btn-default pull-right">reset zoom</button>
+            </div>
+            <div class="bottom-row content-box">
+                child part list
+            </div>
+        </div>
+        <div class="right-column content-box" ng-show="channelMode">
+            channels of selected child
+        </div>
+        <div class="right-column content-box" ng-hide="channelMode">
+            connectors of selected child
+        </div>
+    </tab> <!-- end internal -->
+    <tab heading="Change History">
+        <div class="content-box">
+            change history will come later...
+        </div>
+    </tab> <!-- end change history -->
+    <tab heading="Commit">
+        <div class="content-box">
+            real-time audit, list of changes, required commit comment, commit button<br>
+            <button type="submit" class="btn btn-default">Save</button>
+        </div>
+    </tab> <!-- end commit -->
+</tabset>
