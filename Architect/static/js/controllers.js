@@ -48,6 +48,28 @@ controllers.controller('PartCtrl', ['$scope', '$routeParams', '$log',
         $scope.channelMode = true;
         $scope.root = $routeParams.root;
         $scope.version = $routeParams.version;
+  $scope.isCollapsed = false;
+
+        $scope.selectedChild = 0;
+
+        $scope.children = [];
+        for(var i = 0; i < 3; i++) {
+            var child = {
+                id: i,
+                name: Math.random(),
+            };
+            $scope.children.push(child); // sorry kid
+        }
+
+        $scope.channels = [];
+        for(var i = 0; i < 10; i++) {
+            var channel = {
+                exposed: Math.round(Math.random()) == 1, // true if this isn't an exposed child's channel
+                part: i%3,
+                name: Math.random(),
+            };
+            $scope.channels.push(channel);
+        }
     }]);
 
 controllers.controller('TaskCtrl', ['$scope', '$log', '$modal', 'Task', 'Session',

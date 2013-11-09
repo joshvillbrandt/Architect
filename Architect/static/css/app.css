@@ -17,9 +17,39 @@
 }
 
 
-/* tasks
+/* parts
 -------------------------------------------------- */
 
+tbody tr:hover {
+    background: #f5f5f5;
+}
+
+.channel-column {
+    min-width: 250px;
+}
+
+/* color palette: http://colrd.com/create/palette/?id=24070 */
+tr.active .signal-list span.label:nth-child(8n+1) {background-color: #f10303;}
+tr.active .signal-list span.label:nth-child(8n+2) {background-color: #4043fc;}
+tr.active .signal-list span.label:nth-child(8n+3) {background-color: #f9a905;}
+tr.active .signal-list span.label:nth-child(8n+4) {background-color: #68d41f;}
+tr.active .signal-list span.label:nth-child(8n+5) {background-color: #a12991;}
+tr.active .signal-list span.label:nth-child(8n+6) {background-color: #02d3e2;}
+tr.active .signal-list span.label:nth-child(8n+7) {background-color: #ff6321;}
+tr.active .signal-list span.label:nth-child(8n+8) {background-color: #02871f;}
+
+.glyphicon-ok {
+    color: #5cb85c;
+}
+.glyphicon-remove {
+    color: #d9534f;
+}
+.glyphicon-share-alt {
+    color: #5bc0de;
+}
+.btn-info .glyphicon-share-alt {
+    color: inherit;
+}
 
 /* modal fix (http://blog.corveloper.com/2013/08/angularjs-with-ui-bootstrap-fix-dialog-boxes/) */ 
 

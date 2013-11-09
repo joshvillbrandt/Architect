@@ -9,7 +9,7 @@
             <div class="top-row content-box">
                 external visualization
 
-                <button type="submit" class="btn btn-xs btn-default pull-right">reset zoom</button>
+                <button type="button" class="btn btn-xs btn-default pull-right">reset zoom</button>
             </div>
             <div class="bottom-row content-box">
                 <form role="form">
@@ -38,86 +38,48 @@
             </div>
         </div>
         <div class="right-column content-box" ng-show="channelMode">
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
-            channels<br>
+            channels:
+            <div ng-repeat="channel in channels | filter:{exposed:true}">
+                {{channel.name}}
+                <br>
+                exposed: 
+                {{channel.exposed}}
+            </div>
+
+
+
+
+
+
+<table class="table table-condensed">
+<thead>
+    <tr>
+        <th class="channel-column">Channel</th>
+        <th>Signals</th>
+    </tr>
+</thead>
+<tbody>
+<tr data-target="#interface-channel-0" class=""><td>Chassis #0</td><td class="signal-list"><span class="label label-default">chassis</span> J1.2, J1.7, J1.14, J1.22, J1.44, J1.50, J1.54, J1.shell, J2.15, J2.23, J2.32, J2.41, J2.49, J2.shell, J3.D, J3.shell</td></tr><tr data-target="#interface-channel-1" class=""><td>JTAG Enable, 3.3V #jtag-enable <span class="pull-right glyphicon glyphicon-info-sign" tooltip="not connected in flight; pull low to enable jtag programming" data-original-title="" title=""></span></td><td class="signal-list"><span class="label label-default">VREF</span> J1.36&nbsp;<span class="label label-default">GND</span> J1.10, J1.17</td></tr><tr data-target="#interface-channel-2" class=""><td>JTAG, 3.3V #FPGA <span class="pull-right glyphicon glyphicon-info-sign" tooltip="not connected in flight" data-original-title="" title=""></span></td><td class="signal-list"><span class="label label-default">TDI</span> J1.20&nbsp;<span class="label label-default">TDO</span> J1.13&nbsp;<span class="label label-default">TCK</span> J1.6&nbsp;<span class="label label-default">TMS</span> J1.21&nbsp;<span class="label label-default">VREF</span> J1.1&nbsp;<span class="label label-default">GND</span> J1.10, J1.17</td></tr><tr data-target="#interface-channel-3" class="active"><td>JTAG, 3.3V #microp <span class="pull-right glyphicon glyphicon-info-sign" tooltip="1. not connected in flight
+2. this jtag port is psuedo jtag" data-original-title="" title=""></span></td><td class="signal-list"><span class="label label-default">TDI</span> J1.29&nbsp;<span class="label label-default">TDO</span> J1.49&nbsp;<span class="label label-default">TCK</span> J1.30&nbsp;<span class="label label-default">TMS</span> J1.53&nbsp;<span class="label label-default">VREF</span> &nbsp;<span class="label label-default">GND</span> J1.10, J1.17</td></tr><tr data-target="#interface-channel-4" class=""><td>Motor, 3-Phase #throttle</td><td class="signal-list"><span class="label label-default">A</span> J3.A&nbsp;<span class="label label-default">B</span> J3.B&nbsp;<span class="label label-default">C</span> J3.C</td></tr><tr data-target="#interface-channel-5"><td>Power Input, 18V-36V #logic</td><td class="signal-list"><span class="label label-default">P</span> J1.4, J1.5&nbsp;<span class="label label-default">N</span> J1.10, J1.17</td></tr><tr data-target="#interface-channel-6"><td>Power Input, 18V-36V #motor</td><td class="signal-list"><span class="label label-default">P</span> J1.37, J1.38, J1.45, J1.51, J1.52, J1.55&nbsp;<span class="label label-default">N</span> J1.3, J1.8, J1.9, J1.15, J1.23, J1.31</td></tr><tr data-target="#interface-channel-7"><td>Power Input, 18V-36V #valve</td><td class="signal-list"><span class="label label-default">P</span> J1.39, J1.46&nbsp;<span class="label label-default">N</span> J1.16, J1.24</td></tr><tr data-target="#interface-channel-8"><td>RS422, Asynchronous #comm-a</td><td class="signal-list"><span class="label label-default">TX-P</span> J1.11&nbsp;<span class="label label-default">TX-N</span> J1.12&nbsp;<span class="label label-default">RX-P</span> J1.18&nbsp;<span class="label label-default">RX-N</span> J1.19</td></tr><tr data-target="#interface-channel-9"><td>RS422, Asynchronous #comm-b</td><td class="signal-list"><span class="label label-default">TX-P</span> J1.25&nbsp;<span class="label label-default">TX-N</span> J1.26&nbsp;<span class="label label-default">RX-P</span> J1.32&nbsp;<span class="label label-default">RX-N</span> J1.33</td></tr><tr data-target="#interface-channel-10"><td>RS422, Asynchronous #comm-c</td><td class="signal-list"><span class="label label-default">TX-P</span> J1.40&nbsp;<span class="label label-default">TX-N</span> J1.41&nbsp;<span class="label label-default">RX-P</span> J1.47&nbsp;<span class="label label-default">RX-N</span> J1.48</td></tr><tr data-target="#interface-channel-11"><td>RS422, Asynchronous #shadow <span class="pull-right glyphicon glyphicon-info-sign" tooltip="not connected in flight" data-original-title="" title=""></span></td><td class="signal-list"><span class="label label-default">TX-P</span> J1.27&nbsp;<span class="label label-default">TX-N</span> J1.28&nbsp;<span class="label label-default">RX-P</span> &nbsp;<span class="label label-default">RX-N</span> </td></tr><tr data-target="#interface-channel-12"><td>Sensor Output, 0-5V #command <span class="pull-right glyphicon glyphicon-info-sign" tooltip="not connected in flight" data-original-title="" title=""></span></td><td class="signal-list"><span class="label label-default">P</span> J1.35&nbsp;<span class="label label-default">N</span> J1.34</td></tr><tr data-target="#interface-channel-13"><td>Sensor Output, 0-5V #position <span class="pull-right glyphicon glyphicon-info-sign" tooltip="not connected in flight" data-original-title="" title=""></span></td><td class="signal-list"><span class="label label-default">P</span> J1.42&nbsp;<span class="label label-default">N</span> J1.43</td></tr></tbody>
+                        </table>
+
+
+
+
+
+
+
         </div>
         <div class="right-column content-box" ng-hide="channelMode">
-            connectors
+            connectors<br>
+            connectors<br>
+            connectors<br>
+            connectors<br>
+            connectors<br>
+            connectors<br>
+            connectors<br>
+            connectors<br>
+            connectors<br>
         </div>
     </tab> <!-- end external -->
     <tab heading="Internal">
@@ -125,14 +87,53 @@
             <div class="top-row content-box">
                 internal visualization
 
-                <button type="submit" class="btn btn-xs btn-default pull-right">reset zoom</button>
+                <button type="button" class="btn btn-xs btn-default pull-right">reset zoom</button>
             </div>
             <div class="bottom-row content-box">
-                child part list
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="channel-column">Child Part</th>
+                            <th>Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="child in children" ng-click="$parent.selectedChild=child.id" ng-class="{active:$parent.selectedChild==child.id}">
+                            <td class="channel-column">
+                                {{child.id}}
+                            </td>
+                            <td>progress bar</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="right-column content-box" ng-show="channelMode">
-            channels of selected child
+            <div class="well">
+                <h3 class="panel-title">Part Name Channel Summary</h3>
+                <input type="checkbox"> power in - 1 of 1<br>
+                <input type="checkbox" value=""> 4-20mA drive - 12 of 20
+            </div>
+<button class="btn" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+
+            <div class="panel panel-default" ng-repeat="channel in channels | filter:{part:selectedChild}">
+                <div class="panel-heading">
+                    Channel Type #{{channel.name}}
+                    <span class="glyphicon glyphicon-ok pull-right" ng-if="!channel.exposed"></span>
+                    <span class="glyphicon glyphicon-share-alt pull-right" ng-if="channel.exposed"></span>
+                </div>
+                <div class="panel-body" ng-class="{collapse:$parent.isCollapsed}">
+                    <p>no mates...</p>
+                    <button type="button" class="btn btn-xs btn-default">add channel mate</button>
+                    <button type="button" class="btn btn-xs btn-default pull-right" ng-click="channel.exposed = ! channel.exposed" ng-class="{'btn-info':channel.exposed}"><span class="glyphicon glyphicon-share-alt"></span> expose</button>
+                </div>
+            </div>
+
+            <small>
+                <span class="glyphicon glyphicon-ok"></span> harness present for all mates,
+                <span class="glyphicon glyphicon-remove"></span> no harness present or harness mate error,
+                <span class="glyphicon glyphicon-share-alt"></span> channel exposed to parent
+            </small>
         </div>
         <div class="right-column content-box" ng-hide="channelMode">
             connectors of selected child
