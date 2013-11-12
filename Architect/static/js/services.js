@@ -6,7 +6,7 @@
 /* Services */
 var services = angular.module('app.services', ['ngResource']);
 
-services.value('version', '0.1');
+services.value('version', '0.1.0');
 
 var tastypieDataTransformer = function ($http) {
     return $http.defaults.transformResponse.concat([

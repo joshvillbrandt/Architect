@@ -95,3 +95,19 @@ Many model types (most non-instance types) have a depreciated field. The intent 
 * tasty pie
 * breeze.js
 * exposing child channels externally
+
+# Change log
+
+Architect uses [semantic versioning](http://semver.org/).
+
+## v0.2.0 - current
+
+This version of the project marks a move to MongoDB and Flask. Architect's ability to expose child interfaces through a parent called for inheritance which relational databases do not support. In addition, having fewer tables (err, collections) makes it easier to store the history of information.
+
+## v0.1.0 - 2013/11/12
+
+The intial separation of Architect and Library projects. This version focuses on a fullscreen editing interface rather than scolling view-only format. This version of the software runs on Django.
+
+## v0.0.0 - 
+
+Check out the Architect Precursor project for the beginnings of Architect. This project contains a method to document the external interfaces of a component and includes an API for this data as well as an SVG viewer. There is also a method to parse and automatically import connectors from the MIL-STD-D38999 specification. The items will eventually find their way back into this project as it matures.
